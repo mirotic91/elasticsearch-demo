@@ -30,7 +30,10 @@ class ElasticSearchConfig {
 
     @Bean
     public Client elasticsearchClient() throws UnknownHostException {
-        Settings settings = Settings.builder().put("cluster.name", this.clusterName).build();
+        Settings settings = Settings.builder()
+                .put("cluster.name", this.clusterName)
+                .put("client.transport.sniff",true)
+                .build();
 
         TransportClient client = new PreBuiltTransportClient(settings);
         client.addTransportAddress(new TransportAddress(InetAddress.getByName(this.host), this.port));
