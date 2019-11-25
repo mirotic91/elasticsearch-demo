@@ -32,7 +32,6 @@ class ElasticSearchConfig {
     public Client elasticsearchClient() throws UnknownHostException {
         Settings settings = Settings.builder()
                 .put("cluster.name", this.clusterName)
-                .put("client.transport.sniff",true)
                 .build();
 
         TransportClient client = new PreBuiltTransportClient(settings);
